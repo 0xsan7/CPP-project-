@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="A polished local quiz experience powered by the C++ quiz engine.">
+  <title>Quizline — Know more. Play better.</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="module" src="/main.tsx"></script>
+</head>
+<body class="auth-mode">
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Quizline home">
+        <img class="brand-mark" src="/quizline-mark.svg" alt="" width="42" height="42">
+        <span class="brand-wordmark">quizline</span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="home" type="button">Explore</button>
+        <button class="nav-link" data-view="leaderboard" type="button">Leaderboard</button>
+        <button class="nav-link" data-view="history" type="button">My history</button>
+        <button class="nav-link" data-view="profile" type="button">Profile</button>
+      </nav>
+      <div class="header-right">
+        <span class="live-pill"><span class="live-dot"></span> LOCAL EDITION</span>
+        <button id="header-avatar" class="avatar" data-view="profile" type="button" aria-label="Open profile">G</button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="auth-view" class="view active" aria-labelledby="auth-heading">
+        <div class="auth-layout">
+          <div class="auth-showcase">
+            <div id="ascii-art-root" class="ascii-art-root"></div>
+            <span class="kicker">A SPACE FOR THE CURIOUS</span>
+            <h1>Make every<br>answer <em>count.</em></h1>
+            <p>Create your account to save every score, follow your progress, and earn your place on the leaderboard.</p>
+
+            <div class="auth-benefits"><span>✦ &nbsp; Personal quiz history</span><span>✦ &nbsp; Saved scores</span><span>✦ &nbsp; Leaderboard rankings</span></div>
+          </div>
+          <div class="auth-panel">
+            <div class="auth-tabs" role="tablist" aria-label="Account access"><button id="login-tab" class="active" type="button" role="tab" aria-selected="true">Sign in</button><button id="register-tab" type="button" role="tab" aria-selected="false">Create account</button></div>
+            <span class="kicker">WELCOME TO QUIZLINE</span>
+            <h2 id="auth-heading">Welcome back.</h2>
+            <p id="auth-intro">Pick up right where your curiosity left off.</p>
+            <form id="auth-form">
+              <label class="field-label" for="auth-username">USERNAME</label>
+              <input id="auth-username" class="text-input" name="username" autocomplete="username" minlength="3" maxlength="24" required placeholder="Your username">
+              <div id="register-fields" class="hidden">
+                <label class="field-label" for="auth-display-name">DISPLAY NAME</label>
+                <input id="auth-display-name" class="text-input" name="displayName" autocomplete="nickname" maxlength="32" placeholder="How should we call you?">
+              </div>
+              <label class="field-label" for="auth-password">PASSWORD</label>
+              <input id="auth-password" class="text-input" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" required placeholder="At least 8 characters">
+              <p id="auth-error" class="form-error" role="alert"></p>
+              <button id="auth-submit" class="button button-primary button-wide" type="submit">Sign in <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="auth-note">Your scores and progress, saved to your account.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="home-view" class="view" aria-labelledby="hero-title">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> THE DAILY BRAIN WORKOUT</div>
+            <h1 id="hero-title">A little curiosity<br>goes a <em>long way.</em></h1>
+            <p>Pick a subject, set your pace, and see how much you know. Every session is a fresh challenge.</p>
+            <div class="hero-actions">
+              <button id="hero-start" class="button button-primary" type="button">Start a quiz <span aria-hidden="true">↗</span></button>
+              <span class="hero-note"><span class="note-spark">✦</span> 20 questions across 4 worlds</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div id="hero-ascii-art-root" class="hero-ascii-art-root"></div>
+          </div>
+        </div>
+
+        <div class="section-heading" id="setup">
+          <div><span class="kicker">01 / GET STARTED</span><h2>Choose your challenge</h2></div>
+          <p>Four subjects. Three levels. One curious mind.</p>
+        </div>
+
+        <div class="setup-grid">
+          <div class="setup-main">
+            <div class="category-grid" role="group" aria-label="Quiz category">
+              <button class="category-card selected" data-category="Science" type="button" aria-pressed="true"><span class="category-icon science">✳</span><span class="category-title">Science</span><span class="category-desc">Discover the world around you</span><span class="card-arrow">↗</span></button>
+              <button class="category-card" data-category="History" type="button" aria-pressed="false"><span class="category-icon history">◷</span><span class="category-title">History</span><span class="category-desc">Travel through time</span><span class="card-arrow">↗</span></button>
+              <button class="category-card" data-category="Technology" type="button" aria-pressed="false"><span class="category-icon tech">⌘</span><span class="category-title">Technology</span><span class="category-desc">Think in bits and bytes</span><span class="card-arrow">↗</span></button>
+              <button class="category-card" data-category="Sports" type="button" aria-pressed="false"><span class="category-icon sports">✦</span><span class="category-title">Sports</span><span class="category-desc">Play the knowledge game</span><span class="card-arrow">↗</span></button>
+            </div>
+            <button id="random-category" class="random-link" type="button">↝ &nbsp; Surprise me with a random category</button>
+          </div>
+          <aside class="setup-panel" aria-label="Quiz settings">
+            <span class="panel-overline">YOUR SESSION</span>
+            <h3>Make it yours.</h3>
+            <span class="field-label">SIGNED IN AS</span>
+            <div class="signed-in-player"><span id="session-player-avatar" class="mini-avatar">Q</span><span id="session-player">Player</span><span class="signed-in-check">✓</span></div>
+            <span class="field-label difficulty-label">DIFFICULTY</span>
+            <div class="difficulty-tabs" role="group" aria-label="Difficulty">
+              <button type="button" data-difficulty="Easy" class="selected" aria-pressed="true">Easy</button>
+              <button type="button" data-difficulty="Medium" aria-pressed="false">Medium</button>
+              <button type="button" data-difficulty="Hard" aria-pressed="false">Hard</button>
+              <button type="button" data-difficulty="All" aria-pressed="false">Mixed</button>
+            </div>
+            <div class="session-details"><span>Questions</span><strong id="question-count">2</strong></div>
+            <div class="session-details"><span>Time per question</span><strong id="time-range">20 sec</strong></div>
+            <button id="start-quiz" class="button button-primary button-wide" type="button">Let's play <span aria-hidden="true">→</span></button>
+            <p class="panel-footnote">Hints and skips are always available.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="quiz-view" class="view focused-view" aria-labelledby="quiz-heading">
+        <div class="focused-top"><button class="back-button" data-view="home" type="button">← Back to explore</button><span id="quiz-category-pill" class="topic-pill"></span></div>
+        <div class="quiz-layout">
+          <div class="quiz-primary">
+            <div class="quiz-meta"><span id="quiz-progress-label">QUESTION 01 / 02</span><span id="quiz-points-label">+10 POINTS</span></div>
+            <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+            <h2 id="quiz-heading"></h2>
+            <div id="answer-options" class="answer-options" role="group" aria-label="Answer options"></div>
+            <div id="hint-text" class="hint-box hidden" role="status"></div>
+            <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+            <div class="quiz-actions"><button id="hint-button" class="button button-outline" type="button">✧ &nbsp; Show hint</button><button id="skip-button" class="button button-text" type="button">Skip question →</button><button id="next-button" class="button button-primary hidden" type="button">Next question <span aria-hidden="true">→</span></button></div>
+          </div>
+          <aside class="quiz-sidebar"><div class="timer-caption">TIME ELAPSED</div><div id="timer-display" class="timer-display">00:00</div><div class="timer-track"><div id="timer-fill"></div></div><p>Fast answers earn up to 50% extra points. Take your time when you need it.</p><div class="side-divider"></div><div class="score-caption">SESSION SCORE</div><div id="live-score" class="live-score">0<span> pts</span></div><div class="side-divider"></div><div class="quiz-tip">✦ <span>Every answer teaches you something new.</span></div></aside>
+        </div>
+      </section>
+
+      <section id="results-view" class="view focused-view" aria-labelledby="result-title"><div class="results-card"><div class="result-sparkles" aria-hidden="true">✦ &nbsp; ✧ &nbsp; ✦</div><span class="kicker">SESSION COMPLETE</span><div id="result-grade" class="result-grade">S</div><h2 id="result-title">Brilliant work.</h2><p id="result-subtitle"></p><div class="result-stats"><div><span>FINAL SCORE</span><strong id="result-score"></strong></div><div><span>ACCURACY</span><strong id="result-accuracy"></strong></div><div><span>CORRECT</span><strong id="result-correct"></strong></div></div><p id="save-status" class="save-status"></p><div class="result-actions"><button id="play-again" class="button button-primary" type="button">Play again <span aria-hidden="true">→</span></button><button class="button button-outline" data-view="leaderboard" type="button">See leaderboard</button></div></div></section>
+
+      <section id="leaderboard-view" class="view data-view" aria-labelledby="leaderboard-heading"><div class="data-heading"><div><span class="kicker">THE SCOREBOARD</span><h1 id="leaderboard-heading">Leaderboard<span class="title-dot">.</span></h1><p>Top performers across every category and difficulty.</p></div><button class="button button-outline" data-view="home" type="button">← Back to explore</button></div><div class="table-card"><div class="table-header"><span>RANK</span><span>PLAYER</span><span>SCORE</span><span>ACCURACY</span><span>DIFFICULTY</span><span>DATE</span></div><div id="leaderboard-rows" class="table-body"></div></div></section>
+
+      <section id="history-view" class="view data-view" aria-labelledby="history-heading"><div class="data-heading"><div><span class="kicker">YOUR JOURNEY</span><h1 id="history-heading">My history<span class="title-dot">.</span></h1><p id="history-intro">Your progress, one question at a time.</p></div><button class="button button-outline" data-view="home" type="button">← Back to explore</button></div><div id="history-stats" class="history-stats"></div><div class="table-card"><div class="table-header history-header"><span>SESSION</span><span>SCORE</span><span>CORRECT</span><span>ACCURACY</span><span>DIFFICULTY</span><span>DATE</span></div><div id="history-rows" class="table-body"></div></div></section>
+
+      <section id="profile-view" class="view data-view" aria-labelledby="profile-heading">
+        <div class="data-heading"><div><span class="kicker">YOUR QUIZLINE SPACE</span><h1 id="profile-heading">My profile<span class="title-dot">.</span></h1><p>One place to see how far you've come.</p></div><button class="button button-outline" data-view="home" type="button">← Back to explore</button></div>
+        <div class="profile-grid">
+          <div class="profile-main">
+            <div class="profile-identity"><span id="profile-avatar" class="profile-avatar">Q</span><div><h2 id="profile-name">Player</h2><p id="profile-username">@username</p><span id="profile-joined" class="profile-joined">Member since —</span></div></div>
+            <div id="profile-stats" class="profile-stats"></div>
+            <div class="profile-recent"><div class="profile-section-title"><h3>Recent sessions</h3><button data-view="history" type="button">View all →</button></div><div id="profile-recent-list"></div></div>
+          </div>
+          <aside class="profile-settings"><span class="panel-overline">ACCOUNT SETTINGS</span><h3>Make it yours.</h3><form id="profile-form"><label class="field-label" for="profile-display-name">DISPLAY NAME</label><input id="profile-display-name" class="text-input" name="displayName" maxlength="32" required><label class="field-label profile-password-label" for="current-password">CHANGE PASSWORD <small>OPTIONAL</small></label><input id="current-password" class="text-input" name="currentPassword" type="password" autocomplete="current-password" placeholder="Current password"><label class="field-label" for="new-password">NEW PASSWORD</label><input id="new-password" class="text-input" name="newPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="At least 8 characters"><p id="profile-error" class="form-error" role="alert"></p><button id="profile-save" class="button button-primary button-wide" type="submit">Save changes <span aria-hidden="true">→</span></button></form><button id="logout-button" class="logout-button" type="button">Sign out of Quizline ↗</button></aside>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>QUIZLINE <b>✦</b> LOCAL EDITION</span><span>Powered by the original C++ quiz engine</span></footer>
+  </div>
+  <div id="toast" class="toast hidden" role="alert"></div>
+</body>
+</html>
