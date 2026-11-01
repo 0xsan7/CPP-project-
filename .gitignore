@@ -12,3 +12,11 @@ dist/
 .DS_Store
 *.pyc
 *.log
+
+# Terminal build output and local session data
+quiz_terminal
+quiz_terminal.exe
+quiz_app.exe
+ghost.dat
+ghost.dat.tmp
+terminal_sessions.dat
