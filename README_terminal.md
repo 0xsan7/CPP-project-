@@ -4,6 +4,27 @@ The terminal edition of Quizline: a self-contained C++17 quiz application with
 an ncurses interface. For the browser edition, project architecture, and a
 comparison of both versions, see [the project README](README.md).
 
+## Screenshots and demo
+
+![Terminal question with live countdown and power-up badges](docs/assets/terminal-question.png)
+
+| Main menu | Category performance |
+|---|---|
+| ![Arrow-key main menu](docs/assets/terminal-menu.png) | ![Session accuracy breakdown](docs/assets/terminal-performance.png) |
+
+| Ghost result | Leaderboard |
+|---|---|
+| ![Ghost challenge result and bonus](docs/assets/terminal-results.png) | ![Saved scores and podium](docs/assets/terminal-leaderboard.png) |
+
+<details>
+<summary>Watch the terminal playthrough</summary>
+
+![Terminal demo showing hints, power-ups, ghost mode, and streaks](docs/assets/terminal-demo.gif)
+
+</details>
+
+These captures are rendered from real terminal output using temporary demo scores. The GIF shows selected moments with shortened pauses. See [the media guide](docs/MEDIA.md) for capture details.
+
 ## Installation
 
 Use a color terminal with at least **80 columns × 24 rows**, a C++17 compiler,
